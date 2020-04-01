@@ -27,7 +27,6 @@
     git --git-dir={{ GIT_DIR }}/.git push https://{{ GIT_USERNAME }}:{{ GIT_PASSWORD }}@{{ GIT_REPO }} HEAD:{{ GIT_BRANCH }}
   
   register: GIT_OUTPUT
-  ignore_errors: yes
 
 # Display output of shell excution
 - name: "Output for gitpush"
