@@ -14,7 +14,7 @@
   include_role:
     name: create/k8_component
   vars:
-    component_type: "{{ org.cloud_provider}}-storageclass"
+    component_type: "{{ org.cloud_provider }}-storageclass"
     component_name: "{{ storageclass_name }}"
     helm_lint: "false"
     release_dir: "{{ playbook_dir }}/../../../{{ org.gitops.release_dir }}"
@@ -43,3 +43,4 @@
     kubeconfig: "{{ kubernetes.config_file }}"
     context: "{{ kubernetes.context }}"
   when: storageclass_state.resources|length == 0
+  ignore_errors: yes
