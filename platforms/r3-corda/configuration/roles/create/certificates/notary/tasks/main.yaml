@@ -48,7 +48,7 @@
   register: certs_result
   ignore_errors: yes
 
-- name: Generate node certs
+- name: Generate notary certs
   shell: |
     cd {{ notary_certs }}
     openssl genrsa -out Notary.key 3072
@@ -57,6 +57,8 @@
     openssl pkcs12 -export -in Notary.cer -inkey Notary.key -out testkeystore.p12 -passin pass:'cordacadevpass' -passout pass:'cordacadevpass'
     keytool -importkeystore -srckeystore testkeystore.p12 -srcstoretype pkcs12 -srcstorepass cordacadevpass -destkeystore nodekeystore.jks -deststorepass cordacadevpass -deststoretype JKS
   when: certs_result.failed == True
+
+#  -srcalias 1  -destalias notary
 
 - name: "Write certificates to vault"
   shell: |
