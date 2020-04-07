@@ -43,4 +43,3 @@
     kubeconfig: "{{ kubernetes.config_file }}"
     context: "{{ kubernetes.context }}"
   when: storageclass_state.resources|length == 0
-  ignore_errors: yes

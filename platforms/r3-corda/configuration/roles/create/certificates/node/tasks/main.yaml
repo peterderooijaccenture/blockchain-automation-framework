@@ -58,9 +58,6 @@
     keytool -importkeystore -srckeystore testkeystore.p12 -srcstoretype pkcs12 -srcstorepass cordacadevpass -destkeystore nodekeystore.jks -deststorepass cordacadevpass -deststoretype JKS
   when: certs_result.failed == True
 
-#  -srcalias 1 -destalias node
-
-
 - name: "Write certificates to vault"
   shell: |
     vault kv put {{ component_name }}/certs/customnodekeystore nodekeystore.jks="$(cat {{ node_certs }}/nodekeystore.jks | base64)"
